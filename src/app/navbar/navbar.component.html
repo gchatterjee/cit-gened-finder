@@ -1,0 +1,6 @@
+<ul class="nav nav-pills">
+  <li role="presentation" [ngClass]="currentPage == 'PPC' ? 'active' : ''" (click)="changePage('PPC')"><a>Peoples, Places, &amp; Cultures</a></li>
+  <li role="presentation" [ngClass]="currentPage == 'SDM' ? 'active' : ''" (click)="changePage('SDM')"><a>Social Analysis and Decision Making</a></li>
+  <li role="presentation" [ngClass]="currentPage == 'II' ? 'active' : ''"  (click)="changePage('II')"><a>Innovation &amp; Internationalization</a></li>
+  <li role="presentation" [ngClass]="currentPage == 'WE' ? 'active' : ''"  (click)="changePage('WE')"><a>Writing &amp; Expression</a></li>
+</ul>
