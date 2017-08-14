@@ -4,10 +4,11 @@ def number(text):
     if num.endswith('-Managing'): num = num[:-(len('-Managing'))] # Managing Across Culture, PPC
     nums = []
     firstNum = num.split('/')[0].strip()
-    if len(firstNum) < 6: return ['76-453'] # Literature of Empire
+    if len(firstNum) < 6: return ['76453'] # Literature of Empire
     for n in num.split('/'):
         n = n.strip()
-        nums.append(firstNum[:6-len(n)] + n)
+        num_with_dash = firstNum[:6-len(n)] + n
+        nums.append(num_with_dash[:2] + num_with_dash[3:])
     return nums
 
 def name(text):

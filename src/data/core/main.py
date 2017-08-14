@@ -4,12 +4,18 @@ import urllib.request as ulr
 import ssl
 import parser
 import cmu_course_api as cca
+import json
 import time
 
-PPC_URL = 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/people-places-culture.html'
-SDM_URL = 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/social-analysis.html'
-II_URL  = 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/innovation-internationalization.html'
-WE_URL  = 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/writing-expression.html'
+PPC_URL = {'name': 'PPC', 'url': 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/people-places-culture.html'}
+SDM_URL = {'name': 'SDM', 'url': 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/social-analysis.html'}
+II_URL  = {'name': 'II', 'url': 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/innovation-internationalization.html'}
+WE_URL  = {'name': 'WE', 'url': 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/writing-expression.html'}
+
+CURRENT_SEMESTER_HARD_CODED_FOR_DELETION = 'S'
+
+def current_semester():
+    return CURRENT_SEMESTER_HARD_CODED_FOR_DELETION
 
 def get_page(url):
     '''returns the html at a url as a string'''
@@ -26,17 +32,18 @@ def find_classes(soup):
     '''takes in soup of a page and returns a list of the classes'''
     pass
 
-def foo():
+def save_gened_class_numbers():
     urls = [PPC_URL, SDM_URL, II_URL, WE_URL]
+    data = {"data": dict()}
     for url in urls:
-        html = get_page(url)
+        data[url['name']] = []
+        html = get_page(url['url'])
         soup = soupify(html)
         for course in soup.find('div', class_='articleContent').findAll('li'):
             numbers = parser.number(course.get_text())
-            name = parser.name(course.get_text())
-            # Doesn't do anything yet
-    print(numbers)
-    print(name)
+            data[url['name']].append({"numbers": numbers})
+    with open('gened_data.json','wt') as fout:
+        fout.write(json.dumps(data))
 
 def read_course_data():
     '''attempts to import course data from data file as a json object.'''
@@ -47,14 +54,14 @@ def read_course_data():
         return get_course_data()
 
 def get_course_data():
-    with open("course _date.json","wt") as fout:
+    with open("course_data.json","wt") as fout:
         course_data = cca.get_course_data(current_semester())
         if course_data != None: fout.write(json.dumps(course_data))
         return course_data
 
 def main():
-    foo()
-
+    save_gened_class_numbers()
+    # print(read_course_data())
 
 if __name__ == "__main__":
     main()
