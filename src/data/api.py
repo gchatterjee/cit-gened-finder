@@ -15,8 +15,9 @@ NOT_FOUND = 404
 
 INTERNAL_SERVER_ERROR = 500
 
-# RESOURCES
+# constants
 CATEGORIES = [url['name'] for url in course_ops.URLS]
+ALL = 'all'
 
 app = Flask(__name__)
 
@@ -34,45 +35,67 @@ def get_gened_classes():
                 mongo.db.create_collection(cat)
             coll = mongo.db.get_collection(cat)
             for ns in coll.find():
-                print(ns)
                 data.append(ns['number'])
-        return jsonify({'data': data}), OK
+        return jsonify({'status': 'Courses succesfully retrieved.', 'data': data}), OK
     except:
         return jsonify({'error': 'The server threw an exception.'}), INTERNAL_SERVER_ERROR
 
-@app.route('/gened-classes', methods=['PUT'])
+@app.route('/gened-classes', methods=['POST'])
 def put_gened_classes():
-    course_ops.update_gened_classes()
-    courses = course_ops.get_gened_classes()
-    for cat in courses['data']:
-        label = cat['category']
-        numbers = cat['classes']
-        if not label in mongo.db.collection_names():
-            mongo.db.create_collection(label)
-        coll = mongo.db.get_collection(label)
-        for num_array in numbers:
-            for num in num_array:
-                coll.insert({'number': num})
+    try:
+        course_ops.update_gened_classes()
+        courses = course_ops.get_gened_classes()
+        for cat in courses['data']:
+            label = cat['category']
+            numbers = cat['classes']
+            if not label in mongo.db.collection_names():
+                mongo.db.create_collection(label)
+            else:
+                mongo.db.drop_collection(label) # drop the collection
+                mongo.db.create_collection(label) # make the collection again
+            coll = mongo.db.get_collection(label)
+            for num_array in numbers:
+                for num in num_array:
+                    coll.insert({'number': num})
+        return jsonify({'status': 'Courses successfully updated.'}), OK
+    except:
+        return jsonify({'error': 'The server threw an exception.'}), INTERNAL_SERVER_ERROR
 
 @app.route('/all-classes', methods=['GET'])
-def get_one_star(name):
-    star = mongo.db.stars
-    s = star.find_one({'name' : name})
-    if s:
-        pass
-    else:
-        output = "No such name"
-    return jsonify({'result' : output})
+def get_all_classes():
+    try:
+        data = []
+        if not ALL in mongo.db.collection_names():
+            mongo.db.create_collection(ALL)
+        coll = mongo.db.get_collection(ALL)
+        for course in coll.find():
+            data.append(course)
+        return jsonify({'status': 'Courses successfully retrieved.', 'data': data}), OK
+    except:
+        return jsonify({'error': 'The server threw an exception.'}), INTERNAL_SERVER_ERROR
 
-@app.route('/star', methods=['POST'])
-def add_star():
-    star = mongo.db.stars
-    name = request.json['name']
-    distance = request.json['distance']
-    star_id = star.insert({'name': name, 'distance': distance})
-    new_star = star.find_one({'_id': star_id })
-    output = {'name' : new_star['name'], 'distance' : new_star['distance']}
-    return jsonify({'result' : output})
+@app.route('/all-classes', methods=['POST'])
+def put_all_classes():
+    try:
+        course_ops.update_all_classes()
+        courses = course_ops.get_all_classes
+        print(type(courses))
+        # for cat in courses['data']:
+        #     label = cat['category']
+        #     numbers = cat['classes']
+        #     if not label in mongo.db.collection_names():
+        #         mongo.db.create_collection(label)
+        #     else:
+        #         mongo.db.drop_collection(label) # drop the collection
+        #         mongo.db.create_collection(label) # make the collection again
+        #     coll = mongo.db.get_collection(label)
+        #     for num_array in numbers:
+        #         for num in num_array:
+        #             coll.insert({'number': num})
+        # return jsonify({'status': 'Courses successfully updated.'}), OK
+        return jsonify({'foo':'bar'}), OK
+    except:
+        return jsonify({'error': 'The server threw an exception.'}), INTERNAL_SERVER_ERROR
 
 if __name__ == '__main__':
     app.run(debug=True)

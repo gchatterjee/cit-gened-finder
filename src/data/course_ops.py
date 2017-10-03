@@ -14,7 +14,17 @@ WE_URL  = {'name': 'we', 'url': 'https://engineering.cmu.edu/education/undergrad
 
 URLS = [PPC_URL, SDM_URL, II_URL, WE_URL]
 
+SOC_RELEASE_URL = 'http://www.cmu.edu/es/soc-update.html'
+
+SEASONS = ['Summer', 'Fall', 'Spring']
+MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
 # HELPER FUNCTIONS
+
+def get_dmy():
+    '''returns a tuple containing in the following format: (day, month, year)'''
+    time_data = time.gmtime()
+    return (time_data.tm_mday, time_data.month, time_data.tm_year)
 
 def get_page(url):
     '''returns the html at a url as a string'''
@@ -26,6 +36,26 @@ def get_page(url):
 def soupify(html):
     '''turn a string of html into beautiful soup'''
     return bs(html, 'html.parser')
+
+def current_semester():
+    '''return the code for the semester that is most recently released'''
+    html = get_page(SOC_RELEASE_URL)
+    soup = soupify(html)
+    item = soup.find('div', class_='content').find('li').get_text().lower()
+    season = ''
+    month = ''
+    date = ''
+    for s in SEASONS:
+        if s.lower() in item:
+            season = s
+    for m in MONTHS:
+        if m.lower() in item:
+            month = m
+    if month == '': return None
+    if season == '': return None
+    date_search_string = item[item.find(month.lower()):]
+    dates = [int(s) for s in date_search_string.split() if s.isdigit()])
+    if len(dates) == 0: return None
 
 # FOR EXTERNAL CALLS
 
@@ -64,8 +94,10 @@ def get_all_classes():
 
 def update_all_classes():
     '''write class numbers to json file'''
+    current_semester = current_semester()
     with open("course_data.json","wt") as fout:
-        course_data = cca.get_course_data(current_semester())
+        course_data = cca.get_course_data(current_semester)
+        course_data['semester'] = current_semester
         if course_data != None: fout.write(json.dumps(course_data))
 
-update_gened_classes()
+current_semester()
