@@ -5,6 +5,7 @@ import ssl
 import parser
 import cmu_course_api as cca
 import json
+import string
 import time
 
 PPC_URL = {'name': 'ppc', 'url': 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/people-places-culture.html'}
@@ -24,7 +25,7 @@ MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augus
 def get_dmy():
     '''returns a tuple containing in the following format: (day, month, year)'''
     time_data = time.gmtime()
-    return (time_data.tm_mday, time_data.month, time_data.tm_year)
+    return (time_data.tm_mday, time_data.tm_mon, time_data.tm_year)
 
 def get_page(url):
     '''returns the html at a url as a string'''
@@ -36,6 +37,22 @@ def get_page(url):
 def soupify(html):
     '''turn a string of html into beautiful soup'''
     return bs(html, 'html.parser')
+
+def remove_punctuation(s):
+    '''remove punctuation from a string'''
+    res = ''
+    for i in range(len(s)):
+        if not (s[i] in string.punctuation): res += s[i]
+    return res
+
+def date_compare(date0, date1):
+    '''determines whether a date is within the last six months or the next six
+    months'''
+    month0 = date0[1] - 1
+    month1 = date1[1] - 1
+    before = (month1 - 6)%12
+    after = (month1 + 6)%12
+    
 
 def current_semester():
     '''return the code for the semester that is most recently released'''
@@ -53,9 +70,11 @@ def current_semester():
             month = m
     if month == '': return None
     if season == '': return None
-    date_search_string = item[item.find(month.lower()):]
-    dates = [int(s) for s in date_search_string.split() if s.isdigit()])
+    date_search_string = remove_punctuation(item[item.find(month.lower()):])
+    dates = [int(s) for s in date_search_string.split() if s.isdigit()]
     if len(dates) == 0: return None
+    date = dates[0]
+
 
 # FOR EXTERNAL CALLS
 
@@ -94,10 +113,10 @@ def get_all_classes():
 
 def update_all_classes():
     '''write class numbers to json file'''
-    current_semester = current_semester()
+    curr_sem = current_semester()
     with open("course_data.json","wt") as fout:
         course_data = cca.get_course_data(current_semester)
-        course_data['semester'] = current_semester
+        course_data['semester'] = curr_sem
         if course_data != None: fout.write(json.dumps(course_data))
 
-current_semester()
+print(get_dmy())
