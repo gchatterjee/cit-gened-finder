@@ -45,23 +45,24 @@ def remove_punctuation(s):
         if not (s[i] in string.punctuation): res += s[i]
     return res
 
-def date_compare(date0, date1):
-    '''determines whether a date is within the last six months or the next six
-    months'''
-    month0 = date0[1] - 1
-    month1 = date1[1] - 1
-    before = (month1 - 6)%12
-    after = (month1 + 6)%12
-    
+def is_after(dt1, dt2):
+    '''determines whether dt1 is after dt2'''
+    (d1, m1, _) = dt1
+    (d2, m2, _) = dt2
+    m1 = (m1 - 1)%12 # indexing starts at 0
+    m2 = (m2 - 1)%12 # indexing starts at 0
+    m2_before = set([(m2 - i)%12 for i in range(1,7)])
+    m2_after = set([(m2 + i)%12 for i in range(1,6)])
+    if m1 in m2_after: return True
+    elif m1 in m2_before: return False
+    else: return (d1 >= d2)
 
 def current_semester():
     '''return the code for the semester that is most recently released'''
     html = get_page(SOC_RELEASE_URL)
     soup = soupify(html)
     item = soup.find('div', class_='content').find('li').get_text().lower()
-    season = ''
-    month = ''
-    date = ''
+    season = month = date = ''
     for s in SEASONS:
         if s.lower() in item:
             season = s
@@ -74,7 +75,7 @@ def current_semester():
     dates = [int(s) for s in date_search_string.split() if s.isdigit()]
     if len(dates) == 0: return None
     date = dates[0]
-
+    return (date, MONTHS.index(month) + 1, season)
 
 # FOR EXTERNAL CALLS
 
@@ -118,5 +119,3 @@ def update_all_classes():
         course_data = cca.get_course_data(current_semester)
         course_data['semester'] = curr_sem
         if course_data != None: fout.write(json.dumps(course_data))
-
-print(get_dmy())

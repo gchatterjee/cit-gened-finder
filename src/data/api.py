@@ -26,17 +26,18 @@ app.config['MONGO_URI'] = 'mongodb://app:foo@ds031347.mlab.com:31347/cit-gened-f
 
 mongo = PyMongo(app)
 
-@app.route('/gened-classes', methods=['GET'])
-def get_gened_classes():
+@app.route('/gened-classes/<category>', methods=['GET'])
+def get_gened_classes(category=None):
     try:
-        data = []
+        print(category)
+        data = set([])
         for cat in CATEGORIES:
-            if not cat in mongo.db.collection_names():
-                mongo.db.create_collection(cat)
-            coll = mongo.db.get_collection(cat)
-            for ns in coll.find():
-                data.append(ns['number'])
-        return jsonify({'status': 'Courses succesfully retrieved.', 'data': data}), OK
+            if category == None or category == cat:
+                if not cat in mongo.db.collection_names():
+                    mongo.db.create_collection(cat)
+                coll = mongo.db.get_collection(cat)
+                for ns in coll.find(): data.add(ns['number'])
+        return jsonify({'status': 'Courses succesfully retrieved.', 'data': sorted(list(data))}), OK
     except:
         return jsonify({'error': 'The server threw an exception.'}), INTERNAL_SERVER_ERROR
 
@@ -64,13 +65,13 @@ def put_gened_classes():
 @app.route('/all-classes', methods=['GET'])
 def get_all_classes():
     try:
-        data = []
+        data = set([])
         if not ALL in mongo.db.collection_names():
             mongo.db.create_collection(ALL)
         coll = mongo.db.get_collection(ALL)
         for course in coll.find():
-            data.append(course)
-        return jsonify({'status': 'Courses successfully retrieved.', 'data': data}), OK
+            data.add(course)
+        return jsonify({'status': 'Courses successfully retrieved.', 'data': sorted(list(data))}), OK
     except:
         return jsonify({'error': 'The server threw an exception.'}), INTERNAL_SERVER_ERROR
 
@@ -78,7 +79,7 @@ def get_all_classes():
 def put_all_classes():
     try:
         course_ops.update_all_classes()
-        courses = course_ops.get_all_classes
+        courses = course_ops.get_all_classes()
         print(type(courses))
         # for cat in courses['data']:
         #     label = cat['category']
@@ -96,6 +97,8 @@ def put_all_classes():
         return jsonify({'foo':'bar'}), OK
     except:
         return jsonify({'error': 'The server threw an exception.'}), INTERNAL_SERVER_ERROR
+
+#TODO: This
 
 if __name__ == '__main__':
     app.run(debug=True)
