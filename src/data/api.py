@@ -94,7 +94,8 @@ def put_all_classes():
         #         for num in num_array:
         #             coll.insert({'number': num})
         # return jsonify({'status': 'Courses successfully updated.'}), OK
-        return jsonify({'foo':'bar'}), OK
+        # return jsonify({'foo':'bar'}), OK
+        raise Exception("Unimplemented.")
     except:
         return jsonify({'error': 'The server threw an exception.'}), INTERNAL_SERVER_ERROR
 
