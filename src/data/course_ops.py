@@ -1,12 +1,11 @@
 from bs4 import BeautifulSoup as bs
-from course import Course
 import urllib.request as ulr
 import ssl
 import parser
-import cmu_course_api as cca
 import json
 import string
 import time
+from cmu_course_api_mod import cca
 
 # CONSTANTS
 
@@ -125,6 +124,7 @@ def get_all_classes():
 
 def update_all_classes():
     '''write class numbers to json file'''
+    print('update all classes')
     (ud, um, uc_semester) = upcoming_semester()
     release_date = (ud, um, None)
     last_update = None
@@ -133,14 +133,13 @@ def update_all_classes():
         with open('course_data.json','rt') as fin:
             data = json.loads(fin.read())
             last_update = parse_datestring(data['rundate'])
+        print(last_update)
     except: pass # current data doesn't exist, so we need to update
     if(last_update == None or (is_after(current_date(), release_date) and is_after(release_date, last_update))):
+        print('updating')
         try:
             with open('course_data.json', 'wt') as fout:
+                print('file open')
                 course_data = cca.get_course_data(SEASONS[uc_semester])
                 if course_data != None: fout.write(json.dumps(course_data))
         except: return
-
-# TODO: adapt course api for own purposes: too bulky now
-
-update_all_classes()

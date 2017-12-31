@@ -21,57 +21,57 @@ DESC_URL = "https://enr-apps.as.cmu.edu/open/SOC/SOCServlet/courseDetails"
 # @param reqs: A string of required prerequisites/corequisites.
 # @return: {'invert': Bool indicating whether the representation is inverted,
 #           'reqs_list': List representation of the pre/corequisites}.
-def create_reqs_obj(reqs):
-
-    # Determines whether the data structure should be inverted by using regex
-    # to determine whether the expression "(xx-xxx and xx-xxx"  is present; the
-    # x's represent any digit 0-9.
-    def is_inverted(reqs):
-        groups = re.findall(r'\((\d{2})(-)(\d{3}) and (\d{2})(-)(\d{3})', reqs)
-        return len(groups) > 0
-
-    # Creates a list from a string by splitting it at the given conjunction
-    # and then formats the list by removing whitespace and parentheses around
-    # each list element.
-    def split_course_list(reqs, conj):
-        split_list = reqs.split(conj)
-        formatted_list = []
-        for item in split_list:
-            formatted_item = item.strip().strip('()')
-            formatted_list.append(formatted_item)
-        return formatted_list
-
-    # Creates a 2-dimensional list given the reqs string and the principal
-    # conjunction.
-    def create_reqs_list(reqs, conj):
-
-        # Separates the requisites into course groups by the given conjunction
-        course_groups = split_course_list(reqs, conj)
-        anti_conj = 'or' if conj == 'and' else 'and'
-        reqs_list = []
-
-        for course_group in course_groups:
-            inner_list = []
-            courses = split_course_list(course_group, anti_conj)
-
-            for course in courses:
-                formatted_str = course.strip()
-                inner_list.append(formatted_str)
-
-            reqs_list.append(inner_list)
-
-        return reqs_list
-
-    if reqs == '' or reqs is None:
-        invert = None
-        reqs_list = None
-    elif is_inverted(reqs):
-        invert = True
-        reqs_list = create_reqs_list(reqs, 'or')
-    else:
-        invert = False
-        reqs_list = create_reqs_list(reqs, 'and')
-    return {'invert': invert, 'reqs_list': reqs_list}
+# def create_reqs_obj(reqs):
+#
+#     # Determines whether the data structure should be inverted by using regex
+#     # to determine whether the expression "(xx-xxx and xx-xxx"  is present; the
+#     # x's represent any digit 0-9.
+#     def is_inverted(reqs):
+#         groups = re.findall(r'\((\d{2})(-)(\d{3}) and (\d{2})(-)(\d{3})', reqs)
+#         return len(groups) > 0
+#
+#     # Creates a list from a string by splitting it at the given conjunction
+#     # and then formats the list by removing whitespace and parentheses around
+#     # each list element.
+#     def split_course_list(reqs, conj):
+#         split_list = reqs.split(conj)
+#         formatted_list = []
+#         for item in split_list:
+#             formatted_item = item.strip().strip('()')
+#             formatted_list.append(formatted_item)
+#         return formatted_list
+#
+#     # Creates a 2-dimensional list given the reqs string and the principal
+#     # conjunction.
+#     def create_reqs_list(reqs, conj):
+#
+#         # Separates the requisites into course groups by the given conjunction
+#         course_groups = split_course_list(reqs, conj)
+#         anti_conj = 'or' if conj == 'and' else 'and'
+#         reqs_list = []
+#
+#         for course_group in course_groups:
+#             inner_list = []
+#             courses = split_course_list(course_group, anti_conj)
+#
+#             for course in courses:
+#                 formatted_str = course.strip()
+#                 inner_list.append(formatted_str)
+#
+#             reqs_list.append(inner_list)
+#
+#         return reqs_list
+#
+#     if reqs == '' or reqs is None:
+#         invert = None
+#         reqs_list = None
+#     elif is_inverted(reqs):
+#         invert = True
+#         reqs_list = create_reqs_list(reqs, 'or')
+#     else:
+#         invert = False
+#         reqs_list = create_reqs_list(reqs, 'and')
+#     return {'invert': invert, 'reqs_list': reqs_list}
 
 
 # @function parse_reqs
@@ -79,36 +79,36 @@ def create_reqs_obj(reqs):
 #        HTML of the search app.
 # @param soup BeautifulSoup of the page's HTML.
 # @return (prereqs, coreqs)
-def parse_reqs(soup):
-
-    # Regex replacement function
-    def correct_course(num):
-        num = num.group(0)
-        return num[:2] + '-' + num[2:]
-
-    # Find text
-    prereqs = soup.find(string='Prerequisites').parent.parent.dd.string
-    coreqs = soup.find(string='Corequisites').parent.parent.dd.string
-
-    # Remove extra whitespace
-    prereqs = ' '.join(prereqs.split())
-    coreqs = ' '.join(coreqs.split())
-
-    # Add dashes to course numbers
-    prereqs = re.sub(r'(\d{5})', correct_course, str(prereqs))
-    coreqs = re.sub(r'(\d{5})', correct_course, str(coreqs))
-
-    # Replace commas with "or" (seems to be an error in their system)
-    prereqs = re.sub(',', 'or', str(prereqs))
-    coreqs = re.sub(',', 'or', str(coreqs))
-
-    # Return null if no pre/corequisites
-    if prereqs == 'None':
-        prereqs = None
-    if coreqs == 'None':
-        coreqs = None
-
-    return (prereqs, coreqs)
+# def parse_reqs(soup):
+#
+#     # Regex replacement function
+#     def correct_course(num):
+#         num = num.group(0)
+#         return num[:2] + '-' + num[2:]
+#
+#     # Find text
+#     prereqs = soup.find(string='Prerequisites').parent.parent.dd.string
+#     coreqs = soup.find(string='Corequisites').parent.parent.dd.string
+#
+#     # Remove extra whitespace
+#     prereqs = ' '.join(prereqs.split())
+#     coreqs = ' '.join(coreqs.split())
+#
+#     # Add dashes to course numbers
+#     prereqs = re.sub(r'(\d{5})', correct_course, str(prereqs))
+#     coreqs = re.sub(r'(\d{5})', correct_course, str(coreqs))
+#
+#     # Replace commas with "or" (seems to be an error in their system)
+#     prereqs = re.sub(',', 'or', str(prereqs))
+#     coreqs = re.sub(',', 'or', str(coreqs))
+#
+#     # Return null if no pre/corequisites
+#     if prereqs == 'None':
+#         prereqs = None
+#     if coreqs == 'None':
+#         coreqs = None
+#
+#     return (prereqs, coreqs)
 
 
 # @function parse_full_names
@@ -197,18 +197,18 @@ def get_course_desc(num, semester, year):
     soup = get_page(url)
 
     # Parse data
-    desc = soup.find(id='course-detail-description').p.string
-    (prereqs, coreqs) = parse_reqs(soup)
+    # desc = soup.find(id='course-detail-description').p.string
+    # (prereqs, coreqs) = parse_reqs(soup)
     names_dict = parse_full_names(soup)
 
-    prereqs_obj = create_reqs_obj(prereqs)
-    coreqs_obj = create_reqs_obj(coreqs)
+    # prereqs_obj = create_reqs_obj(prereqs)
+    # coreqs_obj = create_reqs_obj(coreqs)
 
     return {
-        'desc': desc,
-        'prereqs': prereqs,
-        'prereqs_obj': prereqs_obj,
-        'coreqs': coreqs,
-        'coreqs_obj': coreqs_obj,
+        # 'desc': desc,
+        # 'prereqs': prereqs,
+        # 'prereqs_obj': prereqs_obj,
+        # 'coreqs': coreqs,
+        # 'coreqs_obj': coreqs_obj,
         'names_dict': names_dict
     }

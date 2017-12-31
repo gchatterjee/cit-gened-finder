@@ -9,8 +9,8 @@
 import json
 import os.path
 from datetime import date
-from cmu_course_api.parse_descs import get_course_desc
-from cmu_course_api.parse_schedules import parse_schedules
+from cmu_course_api_mod.parse_descs import get_course_desc
+from cmu_course_api_mod.parse_schedules import parse_schedules
 
 # imports used for multithreading
 import threading
