@@ -8,6 +8,8 @@ import json
 import string
 import time
 
+# CONSTANTS
+
 PPC_URL = {'name': 'ppc', 'url': 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/people-places-culture.html'}
 SDM_URL = {'name': 'sdm', 'url': 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/social-analysis.html'}
 II_URL  = {'name': 'ii', 'url': 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/innovation-internationalization.html'}
@@ -17,12 +19,12 @@ URLS = [PPC_URL, SDM_URL, II_URL, WE_URL]
 
 SOC_RELEASE_URL = 'http://www.cmu.edu/es/soc-update.html'
 
-SEASONS = ['Summer', 'Fall', 'Spring']
+SEASONS = {'Fall': 'F', 'Spring': 'S'}
 MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 # HELPER FUNCTIONS
 
-def get_dmy():
+def current_date():
     '''returns a tuple containing in the following format: (day, month, year)'''
     time_data = time.gmtime()
     return (time_data.tm_mday, time_data.tm_mon, time_data.tm_year)
@@ -57,7 +59,7 @@ def is_after(dt1, dt2):
     elif m1 in m2_before: return False
     else: return (d1 >= d2)
 
-def current_semester():
+def upcoming_semester():
     '''return the code for the semester that is most recently released'''
     html = get_page(SOC_RELEASE_URL)
     soup = soupify(html)
@@ -76,6 +78,13 @@ def current_semester():
     if len(dates) == 0: return None
     date = dates[0]
     return (date, MONTHS.index(month) + 1, season)
+
+def parse_datestring(datestring):
+    '''parses a string in the format 'YYYY-MM-DD' to (int('DD'), int('MM'), int('YYYY')) '''
+    d = int(datestring[8:10])
+    m = int(datestring[5:7])
+    y = int(datestring[0:4])
+    return (d,m,y)
 
 # FOR EXTERNAL CALLS
 
@@ -106,16 +115,32 @@ def update_gened_classes():
 def get_all_classes():
     '''attempts to import course data from data file as a json object.'''
     try:
+        data = None
         with open("course_data.json","rt") as fin:
-            return json.loads(fin.read())
+            data = json.loads(fin.read())
+        return data
     except:
         update_all_classes()
         return get_all_classes()
 
 def update_all_classes():
     '''write class numbers to json file'''
-    curr_sem = current_semester()
-    with open("course_data.json","wt") as fout:
-        course_data = cca.get_course_data(current_semester)
-        course_data['semester'] = curr_sem
-        if course_data != None: fout.write(json.dumps(course_data))
+    (ud, um, uc_semester) = upcoming_semester()
+    release_date = (ud, um, None)
+    last_update = None
+    data = None
+    try: # current data exists
+        with open('course_data.json','rt') as fin:
+            data = json.loads(fin.read())
+            last_update = parse_datestring(data['rundate'])
+    except: pass # current data doesn't exist, so we need to update
+    if(last_update == None or (is_after(current_date(), release_date) and is_after(release_date, last_update))):
+        try:
+            with open('course_data.json', 'wt') as fout:
+                course_data = cca.get_course_data(SEASONS[uc_semester])
+                if course_data != None: fout.write(json.dumps(course_data))
+        except: return
+
+# TODO: adapt course api for own purposes: too bulky now
+
+update_all_classes()

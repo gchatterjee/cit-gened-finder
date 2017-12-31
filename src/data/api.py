@@ -42,7 +42,7 @@ def get_gened_classes(category=None):
         return jsonify({'error': 'The server threw an exception.'}), INTERNAL_SERVER_ERROR
 
 @app.route('/gened-classes', methods=['POST'])
-def put_gened_classes():
+def post_gened_classes():
     try:
         course_ops.update_gened_classes()
         courses = course_ops.get_gened_classes()
@@ -75,8 +75,8 @@ def get_all_classes():
     except:
         return jsonify({'error': 'The server threw an exception.'}), INTERNAL_SERVER_ERROR
 
-@app.route('/all-classes', methods=['POST'])
-def put_all_classes():
+# @app.route('/all-classes', methods=['POST'])
+def post_all_classes():
     try:
         course_ops.update_all_classes()
         courses = course_ops.get_all_classes()
