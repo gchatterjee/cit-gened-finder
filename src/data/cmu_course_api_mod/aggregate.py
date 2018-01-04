@@ -33,7 +33,7 @@ SEMESTER_ABBREV = {
 # @param schedules: Course schedules object as returned by parse_descs.
 # @return An object containing the aggregate of the three datasets.
 def aggregate(schedules):
-    courses = {}
+    courses = []
 
     semester = schedules['semester'].split(' ')[0]
     semester = SEMESTER_ABBREV[semester]
@@ -63,6 +63,7 @@ def aggregate(schedules):
             except ValueError:
                 desc['units'] = None
 
+            desc['number'] = course['num']
             desc['department'] = course['department']
             desc['lectures'] = course['lectures']
             desc['sections'] = course['sections']
@@ -73,9 +74,8 @@ def aggregate(schedules):
                     if meeting['name'] in names_dict:
                         meeting['instructors'] = names_dict[meeting['name']]
 
-            number = course['num'][:2] + '-' + course['num'][2:]
             with lock:
-                courses[number] = desc
+                courses.append(desc)
             queue.task_done()
 
     for course in schedules['schedules']:

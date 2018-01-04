@@ -194,7 +194,6 @@ def get_course_desc(num, semester, year):
     url = DESC_URL + '?' + urllib.parse.urlencode(params)
 
     # Retrieve page
-    soup = get_page(url)
 
     # Parse data
     # desc = soup.find(id='course-detail-description').p.string
