@@ -3,9 +3,6 @@ CIT has a big list of geneds that you can pick from, but often these aren't offe
 
 ## Structure
 
-### app
-`/src/app` contains the backend for the application.
-
 ### data
 `src/data` contains the code for collecting the data necessary for running this app. It also contains an independent API to serve this data.
 
