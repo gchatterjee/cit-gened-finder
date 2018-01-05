@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-ppc',
   templateUrl: './ppc.component.html',
   styleUrls: ['./ppc.component.css']
 })
-export class PpcComponent implements OnInit {
+export class PpcComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  var category : string = 'ppc';
 
 }

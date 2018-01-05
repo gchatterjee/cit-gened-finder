@@ -8,6 +8,11 @@ import { PpcComponent } from './ppc/ppc.component';
 import { SdmComponent } from './sdm/sdm.component';
 import { IiComponent } from './ii/ii.component';
 import { WeComponent } from './we/we.component';
+import { ListingPageComponent } from './listing-page/listing-page.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { NavbarComponent } from './navbar/navbar.component';
+
 
 
 @NgModule({
@@ -16,7 +21,11 @@ import { WeComponent } from './we/we.component';
     PpcComponent,
     SdmComponent,
     IiComponent,
-    WeComponent
+    WeComponent,
+    ListingPageComponent,
+    HeaderComponent,
+    FooterComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,16 @@
+.jumbotron {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: #c21b33;
+  border-radius: 0.3rem;
+}
+
+.display-4 {
+  font-family: 'Noto Serif', serif;
+  color: white;
+}
+
+.lead {
+  font-family: 'Noto Sans', sans-serif;
+  color: white;
+}

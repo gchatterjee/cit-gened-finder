@@ -1,0 +1,43 @@
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+.nav-item {
+    font-family: "Noto Sans", sans-serif;
+}
+
+.nav-link:focus, .nav-link:hover {
+  text-decoration: none;
+}
+
+.nav-link.disabled {
+  color: #868e96;
+}
+
+.nav-pills .nav-link {
+  border-radius: 0.25rem;
+  color: #c21b33;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: white;
+  background-color: #c21b33;
+}
+
+.nav-fill .nav-item {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.nav-justified .nav-item {
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  text-align: center;
+}
