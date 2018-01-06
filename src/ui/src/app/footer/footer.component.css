@@ -1,4 +1,13 @@
-.info {
+.footer {
+    font-family: 'Noto Sans', sans-serif;
+    background-color: #c21b33;
+    color: white;
+}
+
+.contact {
     text-align: center;
-    color: #868e96;
+}
+
+a {
+    color: white;
 }

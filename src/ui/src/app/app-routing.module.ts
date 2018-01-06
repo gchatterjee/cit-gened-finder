@@ -1,16 +1,13 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PpcComponent }         from './ppc/ppc.component';
-import { SdmComponent }         from './sdm/sdm.component';
-import { WeComponent }          from './we/we.component';
-import { IiComponent }          from './ii/ii.component';
+import { ListingPageComponent } from './listing-page/listing-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'ppc', pathMatch: 'full' },
-  { path: 'ppc', component: PpcComponent },
-  { path: 'sdm', component: SdmComponent },
-  { path: 'we', component: WeComponent },
-  { path: 'ii', component: IiComponent }
+  { path: 'ppc', component: ListingPageComponent, data: { category: 'ppc' }},
+  { path: 'sdm', component: ListingPageComponent, data: { category: 'sdm' } },
+  { path: 'we', component: ListingPageComponent, data: { category: 'we' } },
+  { path: 'ii', component: ListingPageComponent, data: { category: 'ii' } }
 ];
 
 @NgModule({

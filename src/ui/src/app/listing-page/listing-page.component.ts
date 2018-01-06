@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-listing-page',
@@ -6,9 +7,11 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./listing-page.component.css']
 })
 export class ListingPageComponent implements OnInit {
-  @Input() category : string;
+  category : string;
 
-  constructor() { }
+  constructor(route: ActivatedRoute) {
+      this.category = route.snapshot.data.category;
+  }
 
   ngOnInit() {
   }
