@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ppc',
@@ -7,6 +7,10 @@ import { Component } from '@angular/core'
 })
 export class PpcComponent {
 
-  var category : string = 'ppc';
+  category : string = 'ppc';
+
+  onClick() {
+
+  }
 
 }

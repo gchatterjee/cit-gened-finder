@@ -4,11 +4,12 @@
 }
 
 .nav-item {
-    font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .nav-link:focus, .nav-link:hover {
   text-decoration: none;
+  color: green;
 }
 
 .nav-link.disabled {
