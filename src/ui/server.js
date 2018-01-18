@@ -7,6 +7,7 @@ var app = express();
 var staticRoot = __dirname + '/dist';
 
 const bodyParser = require('body-parser');
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -34,11 +35,13 @@ var router = express.Router();
 // GET
 router.get('/*', function (req, res) {
 
-  var requestOptions = {
-    'method': req.method,
-    'headers': req.headers,
-    'url': baseUrl + req.url
-  };
+    var requestOptions = {
+      'method': req.method,
+      'headers': req.headers,
+      'body': req.body,
+      'url': baseUrl + req.url,
+      'json': true
+    };
 
   function requestCallback(err, response, body) {
 
@@ -53,7 +56,7 @@ router.get('/*', function (req, res) {
         res.status(500);
       }
     } else {
-      res.status(response.statusCode).json(JSON.parse(body));
+      res.status(response.statusCode).json(body);
     }
   }
   request(requestOptions, requestCallback);
@@ -119,10 +122,10 @@ router.put('/*', function (req, res) {
   request(requestOptions, requestCallback);
 });
 
-app.use('', router);
+app.use('/cgf', router);
 
 app.get('*', function(req, res) {
-        res.sendfile('./index.html');
+        res.sendFile(staticRoot + '/index.html');
     });
 
 app.listen(app.get('port'), function () {

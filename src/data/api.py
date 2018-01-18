@@ -121,7 +121,6 @@ def get_all_classes():
             datum = dict(obj)
             datum.pop('_id', None)
             data.append(datum)
-
         return jsonify({'status': 'Courses successfully retrieved.', 'data': data}), OK
     except:
         return jsonify({'error': 'The server threw an exception.'}), INTERNAL_SERVER_ERROR
