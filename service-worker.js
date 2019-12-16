@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/cit-gened-finder/precache-manifest.33f555487a3aec383bbb1f2bd1a73aa1.js"
+  "/cit-gened-finder/precache-manifest.7365b82ebc80f0ba7d8fa14ac8d87584.js"
 );
 
 self.addEventListener('message', (event) => {
