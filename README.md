@@ -10,7 +10,7 @@ cd cit-gened-finder
 
 Then, you can run a command in the form:
 ```
-python3 -m cgf [-h] -s {F,S} -c {ppc,sdm,ii,we}
+python3 -m app [-h] -s {F,S} -c {ppc,sdm,ii,we}
 ```
 That is, specify `F` or `S` for fall or spring, and specify `ppc`, `sdm`, `ii`, or `we` for People, Places, and Culture, Social Decision Making, Innovation and Internationalization, or Writing and Expression.
 
@@ -18,7 +18,7 @@ Running this command will generate a file called `<s>_<c>.csv`, where `<s>` repr
 
 For example, running the command
 ```
-python3 -m cgf -s S -c ii
+python3 -m app -s S -c ii
 ```
 would generate a file called `S_ii.csv` containing a list of classes in the spring semester satisfying the Innovation and Internationalization category.
 
