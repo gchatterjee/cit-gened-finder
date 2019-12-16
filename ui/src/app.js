@@ -1,44 +1,42 @@
 import React from 'react'
 import View from './components/view/view'
-import { BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
-import { PAGE_KEYS, NOT_FOUND_KEY } from './app.constant'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom'
+import { BASE, PAGE_KEYS, NOT_FOUND_KEY } from './app.constant'
 
 export default function App() {
-    const keys = Object.keys(PAGE_KEYS)
-    const defaultRoute = '/' + keys[0]
-    return (
+  const keys = Object.keys(PAGE_KEYS)
+  const baseRoute = '/' + BASE
+  const defaultRoute = baseRoute + '/' + keys[0]
+  const notFoundRoute = baseRoute + NOT_FOUND_KEY
+
+  return (
+    <div className="container">
       <Router>
-      <div>
-        <ul className="nav">
-          {keys.map(key => {
-            const route = '/' + key
-            return (
-              <li className="nav-item" key={key}>
-                <Link className="nav-link" to={route}>
-                  {PAGE_KEYS[key]}
-                </Link>
-              </li>
-            )
-          })
-        }
-        </ul>
         <Switch>
           {keys.map(key => {
-            const route = '/' + key
+            const route = baseRoute + '/' + key
             return (
               <Route key={key} path={route}>
                 <View pageKey={key}></View>
               </Route>
             )
           })}
-          <Route exact path="/">
+          <Route path={notFoundRoute}>
+            <View pageKey={NOT_FOUND_KEY}></View>
+          </Route>
+          <Route exact path={baseRoute}>
             <Redirect to={defaultRoute}></Redirect>
           </Route>
           <Route path="*">
-            <View pageKey={NOT_FOUND_KEY}></View>
+            <Redirect to={notFoundRoute}></Redirect>
           </Route>
         </Switch>
-        </div>
       </Router>
-    )
-  }
+    </div>
+  )
+}
