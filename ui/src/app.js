@@ -15,7 +15,9 @@ export default function App() {
 
   return (
     <div className="container">
-      <Router basename={process.env.PUBLIC_URL}>
+      <Router
+        basename={process.env.PUBLIC_URL} //eslint-disable-line no-undef
+      >
         <Switch>
           {keys.map(key => {
             const route = '/' + key
