@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c52134e40e0f588b263c76676c9247fa",
+    "revision": "c96fc1808f8f1f4671851e6694192158",
     "url": "/cit-gened-finder/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cit-gened-finder/static/js/2.f66b2a96.chunk.js.LICENSE"
   },
   {
-    "revision": "5a057bb5084c5156e58b",
-    "url": "/cit-gened-finder/static/js/main.66477314.chunk.js"
+    "revision": "0b1d881b1704131780bb",
+    "url": "/cit-gened-finder/static/js/main.e5ded136.chunk.js"
   },
   {
     "revision": "76f79f35d1dd9a25dac4",
