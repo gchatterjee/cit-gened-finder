@@ -1,5 +1,3 @@
-export const BASE = 'cit-gened-finder'
-
 export const PAGE_KEYS = {
   PPC: 'People, Places, and Cultures',
   SDM: 'Social Analysis and Decision Making',

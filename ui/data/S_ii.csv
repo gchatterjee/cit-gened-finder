@@ -1,62 +1,62 @@
 department,name,number,units
+Art,IDeATe: Introduction to Physical Computing,60223,10.0
 Art,Advanced ETB: Experimental Capture,60461,12.0
 Business Administration,Innovation & Entrepreneurial Mindset,70246,6.0
 Architecture,Human-Machine Virtuosity,48530,12.0
-Art,IDeATe: Introduction to Physical Computing,60223,10.0
-Business Administration,International Trade and International Law,70365,9.0
 Business Administration,Intellectual Property and E-Commerce,70366,6.0
-Business Administration,Operations Management,70371,9.0
+Business Administration,International Trade and International Law,70365,9.0
 Business Administration,TBA,70398,9.0
+Business Administration,Operations Management,70371,9.0
 Business Administration,Management Game,70401,12.0
 Business Administration,Introduction to Entrepreneurship,70415,9.0
 Business Administration,New Venture Creation,70416,9.0
-Business Administration,Topics in Entrepreneurship,70417,9.0
 Business Administration,Corporate Strategy,70440,9.0
+Business Administration,Topics in Entrepreneurship,70417,9.0
 Business Administration,Modern Data Management,70455,9.0
-Business Administration,International Marketing,70480,9.0
 Business Administration,Supply Chain Management,70471,9.0
 CIT Interdisciplinary,Rapid Prototype Design,39245,9.0
+Business Administration,International Marketing,70480,9.0
 CIT Interdisciplinary,Leadership Development Seminar,39402,9.0
+Carnegie Mellon University-Wide Studies,Inflatables,99361,9.0
 Computer Science,Entrepreneurship for Computer Science,15390,9.0
 Computer Science,History of Computing,15292,5.0
-Carnegie Mellon University-Wide Studies,Inflatables,99361,9.0
-Design,Design Center: Product Design Fundamentals: Design for Interactions for Products,51264,9.0
-Economics,Law and Economics,73408,9.0
 Design,Design Center: CD Fundamentals: Design for Interactions for Communications,51262,9.0
+Design,Design Center: Product Design Fundamentals: Design for Interactions for Products,51264,9.0
 Dietrich College Interdisciplinary,Topics of Law: Introduction to Intellectual Property Law,66221,9.0
+Engineering & Public Policy,Ethics and Policy Issues in Computing,19211,9.0
+Electrical & Computer Engineering,Entrepreneurship and Innovation in Technology,18601,12.0
+Economics,Law and Economics,73408,9.0
+Engineering & Public Policy,Special Topics: Global Ecological  Issues & Controversies,19437,9.0
+Engineering & Public Policy,Special Topics: Organizational Theory for Engineers,19458,9.0
 Engineering & Public Policy,"Cryptocurrencies, Blockchains and Applications",19303,
 Engineering & Public Policy,Sustainable Energy for the Developing World,19425,9.0
-Electrical & Computer Engineering,Entrepreneurship and Innovation in Technology,18601,12.0
-Engineering & Public Policy,Ethics and Policy Issues in Computing,19211,9.0
-Engineering & Public Policy,Special Topics: Organizational Theory for Engineers,19458,9.0
-Engineering & Public Policy,"Special Topics: Patents, Licensing, and Innovation",19473,9.0
 Engineering & Public Policy,Policies of the Internet,19639,12.0
-Engineering & Public Policy,Special Topics: Global Ecological  Issues & Controversies,19437,9.0
+Engineering & Public Policy,"Special Topics: Patents, Licensing, and Innovation",19473,9.0
 Engineering & Public Policy,The Strategy and Management of Technological Innovation,19682,12.0
 English,Communicating in the Global Marketplace,76318,9.0
-English,Teamwork for Innovators: Theory and Practice,76371,9.0
 English,"Rhetoric, Science, and the Public Sphere",76425,9.0
+English,Teamwork for Innovators: Theory and Practice,76771,
+English,Teamwork for Innovators: Theory and Practice,76371,9.0
 English,"Law, Performance, and Identity",76475,9.0
+Entertainment Technology Pittsburgh,Reality Computing: RE_CONSTRUCTING AUTHENTICITY,53559,12.0
 Entertainment Technology Pittsburgh,Guest Experience in Theme Park Design,53312,9.0
 Entertainment Technology Pittsburgh,"Game Design, Prototyping and Production",53471,15.0
-Entertainment Technology Pittsburgh,Reality Computing: RE_CONSTRUCTING AUTHENTICITY,53559,12.0
 Heinz College Wide Courses,The Strategy and Management of Technological Innovation,94857,12.0
 History,The American Railroad: Decline and Renaissance in the Age of Deregulation,79213,6.0
-History,"Killer Robots:The Ethics, Law, and Politics of Lethal Autonomous Weapons Systems",79302,6.0
-History,Kids and Schools in the 20th Century,79354,6.0
-Human-Computer Interaction,"Designing for Conversation Theories, Models, and Making",05499,12.0
 History,"Inequality, Social Justice, and the Black Urban Experience: 1930s to 2010s",79374,9.0
-Human-Computer Interaction,"Designing for Conversation Theories, Models, and Making",05899,12.0
-English,Teamwork for Innovators: Theory and Practice,76771,
+History,Kids and Schools in the 20th Century,79354,6.0
+History,"Killer Robots:The Ethics, Law, and Politics of Lethal Autonomous Weapons Systems",79302,6.0
 Information Networking Institute,Entrepreneurship and Innovation in Technology,14815,12.0
 Institute for Politics and Strategy,Technology and Policy of Cyber War,84387,9.0
-Institute for Politics and Strategy,"Social Media, Technology, and Conflict",84390,9.0
+Human-Computer Interaction,"Designing for Conversation Theories, Models, and Making",05899,12.0
+Human-Computer Interaction,"Designing for Conversation Theories, Models, and Making",05499,12.0
 Institute for Software Research,Ethics and Policy Issues in Computing,17200,9.0
 Mechanical Engineering,Grand Challenge Innovation,24687,12.0
-Music,Experimental Sound Synthesis,57344,9.0
-Physics,Physics of Musical Sound,33114,9.0
+Institute for Politics and Strategy,"Social Media, Technology, and Conflict",84390,9.0
 Modern Languages,The German Zero Hour--Seventy-Five Years Later,82426,
-Robotics,Human Robot Interaction,16467,12.0
-Physics,Science and Science Fiction,33120,9.0
+Physics,Physics of Musical Sound,33114,9.0
 Robotics,IDeATe: Human-Machine Virtuosity,16455,12.0
+Music,Experimental Sound Synthesis,57344,9.0
+Physics,Science and Science Fiction,33120,9.0
+Robotics,Human Robot Interaction,16467,12.0
 Robotics,Introduction to Robotics Business,16697,9.0

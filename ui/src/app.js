@@ -6,20 +6,19 @@ import {
   Route,
   Redirect
 } from 'react-router-dom'
-import { BASE, PAGE_KEYS, NOT_FOUND_KEY } from './app.constant'
+import { PAGE_KEYS, NOT_FOUND_KEY } from './app.constant'
 
 export default function App() {
   const keys = Object.keys(PAGE_KEYS)
-  const baseRoute = '/' + BASE
-  const defaultRoute = baseRoute + '/' + keys[0]
-  const notFoundRoute = baseRoute + NOT_FOUND_KEY
+  const defaultRoute = '/' + keys[0]
+  const notFoundRoute = NOT_FOUND_KEY
 
   return (
     <div className="container">
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Switch>
           {keys.map(key => {
-            const route = baseRoute + '/' + key
+            const route = '/' + key
             return (
               <Route key={key} path={route}>
                 <View pageKey={key}></View>
@@ -29,7 +28,7 @@ export default function App() {
           <Route path={notFoundRoute}>
             <View pageKey={NOT_FOUND_KEY}></View>
           </Route>
-          <Route exact path={baseRoute}>
+          <Route exact path="/">
             <Redirect to={defaultRoute}></Redirect>
           </Route>
           <Route path="*">
