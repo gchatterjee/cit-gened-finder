@@ -55,18 +55,17 @@ def get_all_classes(semester, target):
     course_data = cca.get_course_data(semester, target)
     return course_data
 
-def generate_csv(semester, category):
+def generate_json(semester, category):
     gen_classes = get_gened_classes()
     existing = get_all_classes(semester, gen_classes[category])['courses']
-    with open('%s_%s.csv'%(semester,category), 'wt') as outfile:
+    with open('%s.json'%(category.upper()), 'wt') as outfile:
         outfile.write(
             pd.DataFrame([
                 {
                     'name': course['name'],
                     'number': course['number'],
-                    'units': course['units'],
                     'department': course['department'],
                     'units': course['units']
                 } for course in existing
-            ]).to_csv(index=False)
+            ]).to_json(orient='split', index=False)
         )

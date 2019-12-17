@@ -11,7 +11,7 @@ import { PAGE_KEYS, NOT_FOUND_KEY } from './app.constant'
 export default function App() {
   const keys = Object.keys(PAGE_KEYS)
   const defaultRoute = '/' + keys[0]
-  const notFoundRoute = NOT_FOUND_KEY
+  const notFoundRoute = '/' + NOT_FOUND_KEY
 
   return (
     <div className="container">

@@ -5,4 +5,4 @@ export const PAGE_KEYS = {
   WE: 'Writing and Expression'
 }
 
-export const NOT_FOUND_KEY = '404'
+export const NOT_FOUND_KEY = 'not_found'

@@ -1,5 +1,5 @@
 import argparse
-from .course_ops import generate_csv
+from .course_ops import generate_json
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -17,4 +17,4 @@ if __name__ == '__main__':
         required=True
     )
     args = parser.parse_args()
-    generate_csv(args.semester, args.category)
+    generate_json(args.semester, args.category)
