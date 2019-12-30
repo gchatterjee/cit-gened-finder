@@ -1,0 +1,33 @@
+.header .title {
+  font-family: "Playfair Display", serif;
+  color: #3d4341;
+}
+.header h2 {
+  font-family: "Habibi", serif;
+  color: #3d4341;
+}
+
+.nav_ .nav {
+  font-family: "Noto Sans", sans-serif;
+  display: flex;
+}
+.nav_ .nav-item {
+  display: flex;
+  flex: 1;
+}
+.nav_ .nav-link {
+  display: flex;
+  flex: 1;
+  color: #455f5d;
+}
+.nav_ .nav-link.active {
+  background-color: #455f5d;
+  color: #e1d9bc;
+}
+
+.table {
+  font-family: "Noto Sans", sans-serif;
+  color: #3d4341;
+}
+
+/*# sourceMappingURL=styles.css.map */

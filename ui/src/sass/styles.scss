@@ -1,0 +1,47 @@
+// Colors
+$text-color: #3d4341;
+$accent-color: #dd4940;
+$background-color: #e1d9bc;
+$link-color: #455f5d;
+$theme-color: #9ed7a9;
+
+// Font Stacks
+$header-font: 'Playfair Display', serif;
+$subheader-font: 'Habibi', serif;
+$text-font: 'Noto Sans', sans-serif;
+
+.header {
+  .title {
+    font-family: $header-font;
+    color: $text-color;
+  }
+  h2 {
+    font-family: $subheader-font;
+    color: $text-color;
+  }
+}
+
+.nav_ {
+  .nav {
+    font-family: $text-font;
+    display: flex;
+  }
+  .nav-item {
+    display: flex;
+    flex: 1;
+  }
+  .nav-link {
+    display: flex;
+    flex: 1;
+    color: $link-color;
+  }
+  .nav-link.active {
+    background-color: $link-color;
+    color: $background-color;
+  }
+}
+
+.table {
+  font-family: $text-font;
+  color: $text-color;
+}

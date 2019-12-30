@@ -15,8 +15,8 @@ export default class Table extends React.Component {
 
   render() {
     return (
-      <div>
-        <table className="table">
+      <div className="table">
+        <table>
           <thead>
             <tr>
               {this.headers.map(name => (

@@ -27,10 +27,10 @@ export default function App() {
               </Route>
             )
           })}
-          <Route path={notFoundRoute}>
+          <Route path={notFoundRoute} exact>
             <View pageKey={NOT_FOUND_KEY}></View>
           </Route>
-          <Route exact path="/">
+          <Route path="/" exact>
             <Redirect to={defaultRoute}></Redirect>
           </Route>
           <Route path="*">

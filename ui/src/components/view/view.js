@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 export default class View extends React.Component {
   render() {
     return (
-      <div>
+      <div className="view">
         <Header pageKey={this.props.pageKey}></Header>
         <Nav></Nav>
         <Table category={this.props.pageKey}></Table>
