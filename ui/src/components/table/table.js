@@ -4,6 +4,11 @@ import { getClasses } from './table.service'
 import { format, generateComparisonFunction } from './table.action'
 import { COLUMNS, SORT_ORDER } from './table.constant'
 import PropTypes from 'prop-types'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faCaretSquareDown,
+  faCaretSquareUp
+} from '@fortawesome/free-solid-svg-icons'
 
 export default class Table extends React.Component {
   constructor(props) {
@@ -36,6 +41,24 @@ export default class Table extends React.Component {
     this.sorted.column = columnName
   }
 
+  caretTags(columnName) {
+    let tags = ''
+    if (columnName === this.sorted.column) {
+      tags +=
+        ' active' +
+        (this.sorted.order === SORT_ORDER.BACKWARD ? ' backward' : ' forward')
+    }
+    return tags
+  }
+
+  arrowDirection(columnName) {
+    if (columnName === this.sorted.column) {
+      return this.sorted.order
+    } else {
+      return SORT_ORDER.FORWARD
+    }
+  }
+
   render() {
     return (
       <div className="table_">
@@ -50,7 +73,25 @@ export default class Table extends React.Component {
                     this.forceUpdate()
                   }}
                 >
-                  {capitalize(this.data.columns[index])}
+                  <div>
+                    <span className="leftAlign">
+                      {capitalize(this.data.columns[index])}
+                    </span>
+                    <span
+                      className={
+                        'rightAlign' + this.caretTags(this.data.columns[index])
+                      }
+                    >
+                      <FontAwesomeIcon
+                        icon={
+                          this.arrowDirection(this.data.columns[index]) ===
+                          SORT_ORDER.FORWARD
+                            ? faCaretSquareDown
+                            : faCaretSquareUp
+                        }
+                      ></FontAwesomeIcon>
+                    </span>
+                  </div>
                 </th>
               ))}
             </tr>

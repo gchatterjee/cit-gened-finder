@@ -41,6 +41,18 @@
   border-top: 2px solid #455f5d;
   border-bottom: 2px solid #455f5d;
 }
+.table_ .table th:hover {
+  background-color: #9ed7a9;
+}
+.table_ .table .leftAlign {
+  float: left;
+}
+.table_ .table .rightAlign {
+  float: right;
+}
+.table_ .table .active {
+  color: #dd4940;
+}
 .table_ .table td {
   border-top: 0px;
   border-bottom: 1px solid #455f5d;
@@ -48,6 +60,9 @@
 
 .footer a {
   color: #455f5d;
+}
+.footer a:hover {
+  color: #9ed7a9;
 }
 
 /*# sourceMappingURL=styles.css.map */

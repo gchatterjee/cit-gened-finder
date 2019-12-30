@@ -60,6 +60,18 @@ $text-font: 'Noto Sans', sans-serif;
       border-top: 2px solid $link-color;
       border-bottom: 2px solid $link-color;
     }
+    th:hover {
+      background-color: $theme-color;
+    }
+    .leftAlign {
+      float: left;
+    }
+    .rightAlign {
+      float: right;
+    }
+    .active {
+      color: $accent-color;
+    }
     td {
       border-top: 0px;
       border-bottom: 1px solid $link-color;
@@ -70,5 +82,8 @@ $text-font: 'Noto Sans', sans-serif;
 .footer {
   a {
     color: $link-color;
+  }
+  a:hover {
+    color: $theme-color;
   }
 }
