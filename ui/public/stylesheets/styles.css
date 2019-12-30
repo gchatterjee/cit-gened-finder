@@ -1,10 +1,14 @@
+#root {
+  background-color: #e1d9bc;
+  color: #3d4341;
+  font-family: "Noto Sans", sans-serif;
+}
+
 .header .title {
   font-family: "Playfair Display", serif;
-  color: #3d4341;
 }
 .header h2 {
   font-family: "Habibi", serif;
-  color: #3d4341;
 }
 
 .nav_ .nav {
@@ -20,14 +24,30 @@
   flex: 1;
   color: #455f5d;
 }
+.nav_ .nav-link:hover {
+  background-color: #9ed7a9;
+}
 .nav_ .nav-link.active {
   background-color: #455f5d;
   color: #e1d9bc;
 }
 
-.table {
+.table_ {
+  margin-top: 2px;
   font-family: "Noto Sans", sans-serif;
-  color: #3d4341;
+}
+
+.table_ .table th {
+  border-top: 2px solid #455f5d;
+  border-bottom: 2px solid #455f5d;
+}
+.table_ .table td {
+  border-top: 0px;
+  border-bottom: 1px solid #455f5d;
+}
+
+.footer a {
+  color: #455f5d;
 }
 
 /*# sourceMappingURL=styles.css.map */
