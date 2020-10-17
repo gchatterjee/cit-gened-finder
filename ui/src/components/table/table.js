@@ -73,7 +73,7 @@ export default class Table extends React.Component {
                     this.forceUpdate()
                   }}
                 >
-                  <div>
+                  <div className="table-head">
                     <span className="leftAlign">
                       {capitalize(this.data.columns[index])}
                     </span>
@@ -82,6 +82,7 @@ export default class Table extends React.Component {
                         'rightAlign' + this.caretTags(this.data.columns[index])
                       }
                     >
+                      &nbsp;
                       <FontAwesomeIcon
                         icon={
                           this.arrowDirection(this.data.columns[index]) ===

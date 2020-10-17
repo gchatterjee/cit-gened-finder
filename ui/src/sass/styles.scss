@@ -1,9 +1,9 @@
 // Colors
-$text-color: #3d4341;
-$accent-color: #dd4940;
-$background-color: #e1d9bc;
-$link-color: #455f5d;
-$theme-color: #9ed7a9;
+$background-color: #FFFCF9;
+$theme-color: #B1EDE8;
+$link-color: #FF6978;
+$text-color: #340068;
+$accent-color: #D4ADCF;
 
 // Font Stacks
 $header-font: 'Playfair Display', serif;
@@ -62,6 +62,10 @@ $text-font: 'Noto Sans', sans-serif;
     }
     th:hover {
       background-color: $theme-color;
+    }
+    .table-head {
+      overflow: hidden;
+      white-space: nowrap;
     }
     .leftAlign {
       float: left;

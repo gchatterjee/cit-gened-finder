@@ -1,6 +1,6 @@
 #root {
-  background-color: #e1d9bc;
-  color: #3d4341;
+  background-color: #FFFCF9;
+  color: #340068;
   font-family: "Noto Sans", sans-serif;
 }
 
@@ -22,14 +22,14 @@
 .nav_ .nav-link {
   display: flex;
   flex: 1;
-  color: #455f5d;
+  color: #FF6978;
 }
 .nav_ .nav-link:hover {
-  background-color: #9ed7a9;
+  background-color: #B1EDE8;
 }
 .nav_ .nav-link.active {
-  background-color: #455f5d;
-  color: #e1d9bc;
+  background-color: #FF6978;
+  color: #FFFCF9;
 }
 
 .table_ {
@@ -38,11 +38,15 @@
 }
 
 .table_ .table th {
-  border-top: 2px solid #455f5d;
-  border-bottom: 2px solid #455f5d;
+  border-top: 2px solid #FF6978;
+  border-bottom: 2px solid #FF6978;
 }
 .table_ .table th:hover {
-  background-color: #9ed7a9;
+  background-color: #B1EDE8;
+}
+.table_ .table .table-head {
+  overflow: hidden;
+  white-space: nowrap;
 }
 .table_ .table .leftAlign {
   float: left;
@@ -51,18 +55,18 @@
   float: right;
 }
 .table_ .table .active {
-  color: #dd4940;
+  color: #D4ADCF;
 }
 .table_ .table td {
   border-top: 0px;
-  border-bottom: 1px solid #455f5d;
+  border-bottom: 1px solid #FF6978;
 }
 
 .footer a {
-  color: #455f5d;
+  color: #FF6978;
 }
 .footer a:hover {
-  color: #9ed7a9;
+  color: #B1EDE8;
 }
 
 /*# sourceMappingURL=styles.css.map */
