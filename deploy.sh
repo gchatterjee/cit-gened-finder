@@ -1,3 +1,5 @@
+set -e
+
 # make data directory in ui folder
 rm -rf ui/src/data
 mkdir ui/src/data
