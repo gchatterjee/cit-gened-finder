@@ -58,9 +58,9 @@ def get_all_classes(semester, target):
 def generate_json(semester, category):
     gen_classes = get_gened_classes()
     existing = get_all_classes(semester, gen_classes[category])['courses']
-    with open('%s.json'%(category.upper()), 'wt') as outfile:
+    with open('%s.js'%(category), 'wt') as outfile:
         outfile.write(
-            pd.DataFrame([
+            "export const data = " + pd.DataFrame([
                 {
                     'name': course['name'],
                     'number': course['number'],
