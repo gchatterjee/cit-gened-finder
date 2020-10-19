@@ -13,7 +13,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '-c',
         '--category',
-        choices=['ppc', 'sdm', 'ii', 'we'],
+        choices=['ppc', 'sadm', 'ii', 'we'],
         required=True
     )
     args = parser.parse_args()

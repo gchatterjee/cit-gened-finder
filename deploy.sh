@@ -1,17 +1,24 @@
+#!/bin/bash
+
 set -e
 
-# make data directory in ui folder
-rm -rf ui/src/data
-mkdir ui/src/data
+if [ "$2" != "-n" ];
+then
 
-# generate json
-python3 -m app -s $1 -c ppc
-python3 -m app -s $1 -c sdm
-python3 -m app -s $1 -c ii
-python3 -m app -s $1 -c we
+    # make data directory in ui folder
+    rm -rf ui/src/data
+    mkdir ui/src/data
 
-# move to data directory
-mv *.json ui/src/data
+    # generate json
+    python3 -m app -s $1 -c ppc
+    python3 -m app -s $1 -c sadm
+    python3 -m app -s $1 -c ii
+    python3 -m app -s $1 -c we
+
+    # move to data directory
+    mv *.json ui/src/data
+
+fi
 
 cd ui
 

@@ -9,7 +9,6 @@ import { NOT_FOUND_TEXT } from './view.constant'
 
 export default class View extends React.Component {
   render() {
-    console.log(this.props.pageKey)
     return (
       <div className="view">
         <Header pageKey={this.props.pageKey}></Header>

@@ -4,12 +4,7 @@ export const COLUMN_NAMES = {
   DEPARTMENT: 'department',
   UNITS: 'units'
 }
-export const COLUMNS = [
-  COLUMN_NAMES.NUMBER,
-  COLUMN_NAMES.NAME,
-  COLUMN_NAMES.DEPARTMENT,
-  COLUMN_NAMES.UNITS
-]
+export const COLUMNS = Object.values(COLUMN_NAMES)
 
 export const SORT_ORDER = {
   FORWARD: 1,

@@ -11,7 +11,7 @@ from . import parser
 # CONSTANTS
 
 PPC_URL = {'name': 'ppc', 'url': 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/people-places-culture.html'}
-SDM_URL = {'name': 'sdm', 'url': 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/social-analysis.html'}
+SDM_URL = {'name': 'sadm', 'url': 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/social-analysis.html'}
 II_URL  = {'name': 'ii', 'url': 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/innovation-internationalization.html'}
 WE_URL  = {'name': 'we', 'url': 'https://engineering.cmu.edu/education/undergraduate-programs/curriculum/general-education/writing-expression.html'}
 
@@ -58,7 +58,7 @@ def get_all_classes(semester, target):
 def generate_json(semester, category):
     gen_classes = get_gened_classes()
     existing = get_all_classes(semester, gen_classes[category])['courses']
-    with open('%s.json'%(category.upper()), 'wt') as outfile:
+    with open('%s.json'%(category), 'wt') as outfile:
         outfile.write(
             pd.DataFrame([
                 {

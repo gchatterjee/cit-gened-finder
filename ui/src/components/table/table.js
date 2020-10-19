@@ -1,7 +1,7 @@
 import React from 'react'
-import { capitalize } from '../../util'
-import { getClasses } from './table.service'
-import { format, generateComparisonFunction } from './table.action'
+import { capitalize } from 'lodash'
+import { getClasses } from '../../services/data.service'
+import { generateComparisonFunction } from './table.action'
 import { COLUMNS, SORT_ORDER } from './table.constant'
 import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,6 +9,7 @@ import {
   faCaretSquareDown,
   faCaretSquareUp
 } from '@fortawesome/free-solid-svg-icons'
+import Row from './row/row'
 
 export default class Table extends React.Component {
   constructor(props) {
@@ -99,13 +100,12 @@ export default class Table extends React.Component {
           </thead>
           <tbody>
             {this.data.data.map(row => (
-              <tr key={row}>
-                {this.order.map(index => (
-                  <td key={row[index]}>
-                    {format(this.data.columns[index], row[index])}
-                  </td>
-                ))}
-              </tr>
+              <Row
+                key={JSON.stringify(row)}
+                row={row}
+                columns={this.data.columns}
+                order={this.order}
+              />
             ))}
           </tbody>
         </table>

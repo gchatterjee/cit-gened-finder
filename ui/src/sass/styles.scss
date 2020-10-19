@@ -28,15 +28,8 @@ $text-font: 'Noto Sans', sans-serif;
 .nav_ {
   .nav {
     font-family: $text-font;
-    display: flex;
-  }
-  .nav-item {
-    display: flex;
-    flex: 1;
   }
   .nav-link {
-    display: flex;
-    flex: 1;
     color: $link-color;
   }
   .nav-link:hover {

@@ -1,17 +1,17 @@
-import ppc from '../../data/PPC.json'
-import sdm from '../../data/SDM.json'
-import ii from '../../data/II.json'
-import we from '../../data/WE.json'
+import ppc from '../../data/ppc.json'
+import sadm from '../../data/sadm.json'
+import ii from '../../data/ii.json'
+import we from '../../data/we.json'
 
 export function getClasses(category) {
   switch (category) {
-    case 'PPC':
+    case 'ppc':
       return ppc
-    case 'SDM':
-      return sdm
-    case 'II':
+    case 'sadm':
+      return sadm
+    case 'ii':
       return ii
-    case 'WE':
+    case 'we':
       return we
     default:
       return {}
