@@ -5,7 +5,6 @@ import json
 import string
 import time
 from . import cmu_course_api_mod as cca
-import pandas as pd
 from . import parser
 
 # CONSTANTS
@@ -60,12 +59,12 @@ def generate_json(semester, category):
     existing = get_all_classes(semester, gen_classes[category])['courses']
     with open('%s.json'%(category), 'wt') as outfile:
         outfile.write(
-            pd.DataFrame([
+            json.dumps([
                 {
                     'name': course['name'],
                     'number': course['number'],
                     'department': course['department'],
                     'units': course['units']
                 } for course in existing
-            ]).to_json(orient='split', index=False)
+            ])
         )
