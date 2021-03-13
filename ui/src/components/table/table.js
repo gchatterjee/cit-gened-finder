@@ -15,7 +15,8 @@ export default class Table extends React.Component {
   constructor(props) {
     super(props)
     this.data = getClasses(this.props.category)
-    this.order = COLUMNS.map(item => this.data.columns.indexOf(item))
+    this.columns = COLUMNS
+    this.order = COLUMNS.map(item => this.columns.indexOf(item))
     this.sorted = {
       column: undefined,
       order: undefined
@@ -24,17 +25,17 @@ export default class Table extends React.Component {
   }
 
   sort(columnName) {
-    const columnIndex = this.data.columns.indexOf(columnName)
+    const columnIndex = this.columns.indexOf(columnName)
     if (
       this.sorted.order === SORT_ORDER.FORWARD &&
       this.sorted.column === columnName
     ) {
-      this.data.data.sort(
+      this.data.sort(
         generateComparisonFunction(SORT_ORDER.BACKWARD, columnIndex)
       )
       this.sorted.order = SORT_ORDER.BACKWARD
     } else {
-      this.data.data.sort(
+      this.data.sort(
         generateComparisonFunction(SORT_ORDER.FORWARD, columnIndex)
       )
       this.sorted.order = SORT_ORDER.FORWARD
@@ -68,25 +69,25 @@ export default class Table extends React.Component {
             <tr>
               {this.order.map(index => (
                 <th
-                  key={this.data.columns[index]}
+                  key={this.columns[index]}
                   onClick={() => {
-                    this.sort(this.data.columns[index])
+                    this.sort(this.columns[index])
                     this.forceUpdate()
                   }}
                 >
                   <div className="table-head">
                     <span className="leftAlign">
-                      {capitalize(this.data.columns[index])}
+                      {capitalize(this.columns[index])}
                     </span>
                     <span
                       className={
-                        'rightAlign' + this.caretTags(this.data.columns[index])
+                        'rightAlign' + this.caretTags(this.columns[index])
                       }
                     >
                       &nbsp;
                       <FontAwesomeIcon
                         icon={
-                          this.arrowDirection(this.data.columns[index]) ===
+                          this.arrowDirection(this.columns[index]) ===
                           SORT_ORDER.FORWARD
                             ? faCaretSquareDown
                             : faCaretSquareUp
@@ -99,11 +100,11 @@ export default class Table extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.data.data.map(row => (
+            {this.data.map(row => (
               <Row
                 key={JSON.stringify(row)}
                 row={row}
-                columns={this.data.columns}
+                columns={this.columns}
                 order={this.order}
               />
             ))}

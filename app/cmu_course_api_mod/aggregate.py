@@ -90,9 +90,11 @@ def aggregate(schedules, target_classes=None):
 
     queue.join()
 
-    return {'courses': courses, 'rundate': str(date.today()),
-            'semester': schedules['semester']}
-
+    return {
+        'courses': courses,
+        'rundate': str(date.today()),
+        'semester': schedules['semester']
+    }
 
 # @function get_course_data
 # @brief Used for retrieving all information from the course-api for a given

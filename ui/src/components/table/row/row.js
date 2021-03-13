@@ -8,9 +8,10 @@ export default class Row extends React.Component {
 
     return (
       <tr key={row}>
-        {order.map(index => (
-          <td key={row[index]}>{format(columns[index], row[index])}</td>
-        ))}
+        {order.map(index => {
+          const column = columns[index]
+          return <td key={row[column]}>{format(column, row[column])}</td>
+        })}
       </tr>
     )
   }
@@ -19,5 +20,5 @@ export default class Row extends React.Component {
 Row.propTypes = {
   order: PropTypes.array.isRequired,
   columns: PropTypes.array.isRequired,
-  row: PropTypes.array.isRequired
+  row: PropTypes.object.isRequired
 }

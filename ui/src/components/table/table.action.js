@@ -1,4 +1,4 @@
-import { COLUMN_NAMES } from './table.constant'
+import { COLUMN_NAMES, COLUMNS } from './table.constant'
 
 export function format(columnName, contents) {
   switch (columnName) {
@@ -10,5 +10,6 @@ export function format(columnName, contents) {
 }
 
 export function generateComparisonFunction(sortingOrder, i) {
-  return (a, b) => sortingOrder * (a[i] > b[i] ? 1 : a[i] < b[i] ? -1 : 0)
+  const key = COLUMNS[i]
+  return (a, b) => sortingOrder * (a[key] > b[key] ? 1 : a[key] < b[key] ? -1 : 0)
 }
