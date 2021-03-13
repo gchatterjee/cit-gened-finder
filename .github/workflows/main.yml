@@ -31,4 +31,4 @@ jobs:
           
       - name: Deploy
         run:
-          bash deploy.sh F
+          bash deploy.sh S
